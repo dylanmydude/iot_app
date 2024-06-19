@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Readings</title>
+    <script>
+        function fetchReading() {
+            fetch('/reading/')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('reading').innerText = 
+                        `Temperature: ${data.temperature}°C, Humidity: ${data.humidity}%, Timestamp: ${data.timestamp}`;
+                    document.getElementById('debug').innerText = data.debug;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        setInterval(fetchReading, 1000); // Fetch reading every second
+    </script>
+</head>
+<body>
+    <h1>Arduino Reading:</h1>
+    <p id="reading">Loading...</p>
+    <p id="debug">Loading...</p>
+</body>
+</html>
