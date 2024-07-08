@@ -1,0 +1,177 @@
+.
+├── iot
+│   ├── db.sqlite3
+│   ├── frontend
+│   │   ├── postcss.config.js
+│   │   └── tailwind.config.js
+│   ├── hello.py
+│   ├── iot_app
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── migrations
+│   │   ├── models.py
+│   │   ├── scripts
+│   │   ├── templates
+│   │   ├── tests.py
+│   │   └── views.py
+│   ├── manage.py
+│   ├── node_modules
+│   │   ├── @alloc
+│   │   ├── @isaacs
+│   │   ├── @jridgewell
+│   │   ├── @nodelib
+│   │   ├── @pkgjs
+│   │   ├── ansi-regex
+│   │   ├── ansi-styles
+│   │   ├── any-promise
+│   │   ├── anymatch
+│   │   ├── arg
+│   │   ├── autoprefixer
+│   │   ├── balanced-match
+│   │   ├── binary-extensions
+│   │   ├── brace-expansion
+│   │   ├── braces
+│   │   ├── browserslist
+│   │   ├── camelcase-css
+│   │   ├── caniuse-lite
+│   │   ├── chokidar
+│   │   ├── color-convert
+│   │   ├── color-name
+│   │   ├── commander
+│   │   ├── cross-spawn
+│   │   ├── cssesc
+│   │   ├── didyoumean
+│   │   ├── dlv
+│   │   ├── eastasianwidth
+│   │   ├── electron-to-chromium
+│   │   ├── emoji-regex
+│   │   ├── escalade
+│   │   ├── fast-glob
+│   │   ├── fastq
+│   │   ├── fill-range
+│   │   ├── foreground-child
+│   │   ├── fraction.js
+│   │   ├── function-bind
+│   │   ├── glob
+│   │   ├── glob-parent
+│   │   ├── hasown
+│   │   ├── is-binary-path
+│   │   ├── is-core-module
+│   │   ├── is-extglob
+│   │   ├── is-fullwidth-code-point
+│   │   ├── is-glob
+│   │   ├── is-number
+│   │   ├── isexe
+│   │   ├── jackspeak
+│   │   ├── jiti
+│   │   ├── lilconfig
+│   │   ├── lines-and-columns
+│   │   ├── lru-cache
+│   │   ├── merge2
+│   │   ├── micromatch
+│   │   ├── minimatch
+│   │   ├── minipass
+│   │   ├── mz
+│   │   ├── nanoid
+│   │   ├── node-releases
+│   │   ├── normalize-path
+│   │   ├── normalize-range
+│   │   ├── object-assign
+│   │   ├── object-hash
+│   │   ├── path-key
+│   │   ├── path-parse
+│   │   ├── path-scurry
+│   │   ├── picocolors
+│   │   ├── picomatch
+│   │   ├── pify
+│   │   ├── pirates
+│   │   ├── postcss
+│   │   ├── postcss-import
+│   │   ├── postcss-js
+│   │   ├── postcss-load-config
+│   │   ├── postcss-nested
+│   │   ├── postcss-selector-parser
+│   │   ├── postcss-value-parser
+│   │   ├── queue-microtask
+│   │   ├── read-cache
+│   │   ├── readdirp
+│   │   ├── resolve
+│   │   ├── reusify
+│   │   ├── run-parallel
+│   │   ├── shebang-command
+│   │   ├── shebang-regex
+│   │   ├── signal-exit
+│   │   ├── source-map-js
+│   │   ├── string-width
+│   │   ├── string-width-cjs
+│   │   ├── strip-ansi
+│   │   ├── strip-ansi-cjs
+│   │   ├── sucrase
+│   │   ├── supports-preserve-symlinks-flag
+│   │   ├── tailwindcss
+│   │   ├── thenify
+│   │   ├── thenify-all
+│   │   ├── to-regex-range
+│   │   ├── ts-interface-checker
+│   │   ├── update-browserslist-db
+│   │   ├── util-deprecate
+│   │   ├── which
+│   │   ├── wrap-ansi
+│   │   ├── wrap-ansi-cjs
+│   │   └── yaml
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── project
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   ├── asgi.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   └── static
+│       ├── _redirects
+│       ├── css
+│       └── js
+├── iotdb.sqlite3
+├── structure.txt
+└── venv
+    ├── bin
+    │   ├── __pycache__
+    │   ├── activate
+    │   ├── activate.csh
+    │   ├── activate.fish
+    │   ├── activate.nu
+    │   ├── activate.ps1
+    │   ├── activate_this.py
+    │   ├── django-admin
+    │   ├── doesitcache
+    │   ├── fixup_firestore_admin_v1_keywords.py
+    │   ├── fixup_firestore_v1_keywords.py
+    │   ├── normalizer
+    │   ├── pip
+    │   ├── pip3
+    │   ├── pip3.8
+    │   ├── pyrsa-decrypt
+    │   ├── pyrsa-encrypt
+    │   ├── pyrsa-keygen
+    │   ├── pyrsa-priv2pub
+    │   ├── pyrsa-sign
+    │   ├── pyrsa-verify
+    │   ├── pyserial-miniterm
+    │   ├── pyserial-ports
+    │   ├── python -> /usr/bin/python3
+    │   ├── python3 -> python
+    │   ├── python3.8 -> python
+    │   ├── sqlformat
+    │   ├── wheel
+    │   ├── wheel-3.8
+    │   ├── wheel3
+    │   └── wheel3.8
+    ├── lib
+    │   └── python3.8
+    └── pyvenv.cfg
+
+121 directories, 53 files
