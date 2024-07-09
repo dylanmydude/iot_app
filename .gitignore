@@ -4,3 +4,4 @@ venv/
 iotdb.sqlite3
 node_modules/
 structure.txt
+staticfiles/

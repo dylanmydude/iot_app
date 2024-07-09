@@ -1,7 +1,118 @@
 .
 ├── db.sqlite3
 ├── frontend
+│   ├── dist
+│   │   └── output.css
+│   ├── node_modules
+│   │   ├── @alloc
+│   │   ├── @isaacs
+│   │   ├── @jridgewell
+│   │   ├── @nodelib
+│   │   ├── @pkgjs
+│   │   ├── ansi-regex
+│   │   ├── ansi-styles
+│   │   ├── any-promise
+│   │   ├── anymatch
+│   │   ├── arg
+│   │   ├── autoprefixer
+│   │   ├── balanced-match
+│   │   ├── binary-extensions
+│   │   ├── brace-expansion
+│   │   ├── braces
+│   │   ├── browserslist
+│   │   ├── camelcase-css
+│   │   ├── caniuse-lite
+│   │   ├── chokidar
+│   │   ├── color-convert
+│   │   ├── color-name
+│   │   ├── commander
+│   │   ├── cross-spawn
+│   │   ├── cssesc
+│   │   ├── didyoumean
+│   │   ├── dlv
+│   │   ├── eastasianwidth
+│   │   ├── electron-to-chromium
+│   │   ├── emoji-regex
+│   │   ├── escalade
+│   │   ├── fast-glob
+│   │   ├── fastq
+│   │   ├── fill-range
+│   │   ├── foreground-child
+│   │   ├── fraction.js
+│   │   ├── function-bind
+│   │   ├── glob
+│   │   ├── glob-parent
+│   │   ├── hasown
+│   │   ├── is-binary-path
+│   │   ├── is-core-module
+│   │   ├── is-extglob
+│   │   ├── is-fullwidth-code-point
+│   │   ├── is-glob
+│   │   ├── is-number
+│   │   ├── isexe
+│   │   ├── jackspeak
+│   │   ├── jiti
+│   │   ├── lilconfig
+│   │   ├── lines-and-columns
+│   │   ├── lru-cache
+│   │   ├── merge2
+│   │   ├── micromatch
+│   │   ├── minimatch
+│   │   ├── minipass
+│   │   ├── mz
+│   │   ├── nanoid
+│   │   ├── node-releases
+│   │   ├── normalize-path
+│   │   ├── normalize-range
+│   │   ├── object-assign
+│   │   ├── object-hash
+│   │   ├── package-json-from-dist
+│   │   ├── path-key
+│   │   ├── path-parse
+│   │   ├── path-scurry
+│   │   ├── picocolors
+│   │   ├── picomatch
+│   │   ├── pify
+│   │   ├── pirates
+│   │   ├── postcss
+│   │   ├── postcss-import
+│   │   ├── postcss-js
+│   │   ├── postcss-load-config
+│   │   ├── postcss-nested
+│   │   ├── postcss-selector-parser
+│   │   ├── postcss-value-parser
+│   │   ├── queue-microtask
+│   │   ├── read-cache
+│   │   ├── readdirp
+│   │   ├── resolve
+│   │   ├── reusify
+│   │   ├── run-parallel
+│   │   ├── shebang-command
+│   │   ├── shebang-regex
+│   │   ├── signal-exit
+│   │   ├── source-map-js
+│   │   ├── string-width
+│   │   ├── string-width-cjs
+│   │   ├── strip-ansi
+│   │   ├── strip-ansi-cjs
+│   │   ├── sucrase
+│   │   ├── supports-preserve-symlinks-flag
+│   │   ├── tailwindcss
+│   │   ├── thenify
+│   │   ├── thenify-all
+│   │   ├── to-regex-range
+│   │   ├── ts-interface-checker
+│   │   ├── update-browserslist-db
+│   │   ├── util-deprecate
+│   │   ├── which
+│   │   ├── wrap-ansi
+│   │   ├── wrap-ansi-cjs
+│   │   └── yaml
+│   ├── package-lock.json
+│   ├── package.json
 │   ├── postcss.config.js
+│   ├── src
+│   │   └── input.css
 │   └── tailwind.config.js
 ├── hello.py
 ├── iot_app
@@ -27,9 +138,6 @@
 │   ├── tests.py
 │   └── views.py
 ├── manage.py
-├── package-lock.json
-├── package.json
-├── postcss.config.js
 ├── project
 │   ├── __init__.py
 │   ├── __pycache__
@@ -86,4 +194,4 @@
     │   └── python3.8
     └── pyvenv.cfg
 
-17 directories, 69 files
+124 directories, 70 files

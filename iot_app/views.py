@@ -13,3 +13,6 @@ def reading(request):
         'humidity': latest_reading.humidity,
         'timestamp': latest_reading.timestamp
     })
+
+def about(request):
+    return render(request, 'about.html')

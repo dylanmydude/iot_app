@@ -25,5 +25,6 @@ urlpatterns = [
     path('', views.index, name='index'),  # Route for the main page
     path('reading/', views.reading, name='reading'),  # Route for getting the latest reading
     path('', TemplateView.as_view(template_name='index.html')),
+    path('about/', views.about, name='about'),
 ]
 
