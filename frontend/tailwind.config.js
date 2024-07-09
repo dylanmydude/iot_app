@@ -1,7 +1,8 @@
+// tailwind.config.js
 module.exports = {
   content: [
-    './index.html',
-    './src/**/*.{js,jsx,ts,tsx}',
+    './src/**/*.{html,js}',
+    '../iot_app/templates/**/*.{html,js}',
   ],
   theme: {
     extend: {},
