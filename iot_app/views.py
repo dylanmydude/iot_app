@@ -11,7 +11,8 @@ def reading(request):
     return JsonResponse({
         'temperature': latest_reading.temperature,
         'humidity': latest_reading.humidity,
-        'timestamp': latest_reading.timestamp
+        'timestamp': latest_reading.timestamp,
+        'debug': 'Sensor data fetched successfully'  # Add any debug info you need
     })
 
 def about(request):
