@@ -119,7 +119,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'frontend' / 'dist',  # Path to Tailwind CSS output
-    BASE_DIR / 'static',             # Path to your static files
+    BASE_DIR / 'frontend' / 'build' / 'static',  # Path to React build static files
+    BASE_DIR / 'static',  # Path to your static files
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 

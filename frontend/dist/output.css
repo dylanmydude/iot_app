@@ -41,10 +41,8 @@ html,
   /* 1 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
-  -moz-tab-size: 4;
   /* 3 */
-  -o-tab-size: 4;
-     tab-size: 4;
+  tab-size: 4;
   /* 3 */
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
@@ -378,13 +376,6 @@ textarea {
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
 
-input::-moz-placeholder, textarea::-moz-placeholder {
-  opacity: 1;
-  /* 1 */
-  color: #9ca3af;
-  /* 2 */
-}
-
 input::placeholder,
 textarea::placeholder {
   opacity: 1;
@@ -597,6 +588,40 @@ video {
   margin-right: auto;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.w-1\/4 {
+  width: 25%;
+}
+
+.w-3\/4 {
+  width: 75%;
+}
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
 .bg-gray-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
@@ -604,6 +629,10 @@ video {
 
 .p-4 {
   padding: 1rem;
+}
+
+.p-8 {
+  padding: 2rem;
 }
 
 .text-2xl {
@@ -621,13 +650,13 @@ video {
   line-height: 1.75rem;
 }
 
-.font-bold {
-  font-weight: 700;
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
-.text-blue-600 {
-  --tw-text-opacity: 1;
-  color: rgb(37 99 235 / var(--tw-text-opacity));
+.font-bold {
+  font-weight: 700;
 }
 
 .text-gray-100 {
@@ -643,5 +672,10 @@ video {
 .text-indigo-400 {
   --tw-text-opacity: 1;
   color: rgb(129 140 248 / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 

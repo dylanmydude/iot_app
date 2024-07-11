@@ -5,14 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arduino Readings</title>
+    <!-- Link to the Tailwind CSS output file -->
     <link href="{% static 'output.css' %}" rel="stylesheet">
-    <script src="{% static 'js/app.js' %}" defer></script>
+    <!-- Link to the hashed CSS file -->
+    <link href="{% static 'css/main.4d2ceb61.css' %}" rel="stylesheet">
 </head>
 <body class="bg-gray-900 text-gray-100">
-    <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold text-indigo-400">Arduino Reading:</h1>
-        <p id="reading" class="text-lg text-gray-300">Loading...</p>
-        <p id="debug" class="text-lg text-gray-300">Loading...</p>
+    <div id="root">
+        <!-- React component will render here -->
     </div>
+    <!-- Link to the hashed JS file -->
+    <script src="{% static 'js/main.44914802.js' %}"></script>
 </body>
 </html>
