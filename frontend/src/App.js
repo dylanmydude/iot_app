@@ -1,12 +1,12 @@
 // src/App.js
 import React from 'react';
 import Dashboard from './Dashboard';
-import ArduinoReadings from './ArduinoReadings';
+// import ArduinoReadings from './ArduinoReadings';
 
 function App() {
   return (
     <Dashboard>
-      <ArduinoReadings />
+      {/* <ArduinoReadings /> */}
     </Dashboard>
   );
 }

@@ -28,7 +28,7 @@ const ArduinoReadings = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold text-indigo-400">Arduino Reading:</h1>
+            <h1 className="text-2xl font-bold text-indigo-400">Set the layout here in figma: </h1>
             <p id="reading" className="text-lg text-gray-300">
                 Temperature: {reading.temperature}°C, Humidity: {reading.humidity}%, Timestamp: {reading.timestamp}
             </p>
