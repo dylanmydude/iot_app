@@ -1,12 +1,16 @@
 // src/index.js
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client'; // Updated import for React 18
 import './input.css'; // Use input.css for Tailwind
 import App from './App';
 
-ReactDOM.render(
+// Create a root.
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
+
+// Initial render
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
