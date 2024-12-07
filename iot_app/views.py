@@ -1,10 +1,16 @@
+import os
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from django.http import JsonResponse
 from .models import SensorReading
 
 def index(request):
-    latest_reading = SensorReading.objects.latest('timestamp')
-    return render(request, 'index.html', {'reading': latest_reading})
+    """Serve the React app."""
+    react_index_path = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'dist', 'index.html')
+    try:
+        with open(react_index_path) as f:
+            return HttpResponse(f.read(), content_type='text/html')
+    except FileNotFoundError:
+        return HttpResponse("React build files not found. Did you run 'npm run build'?", status=404)
 
 def reading(request):
     latest_reading = SensorReading.objects.latest('timestamp')
@@ -12,7 +18,7 @@ def reading(request):
         'temperature': latest_reading.temperature,
         'humidity': latest_reading.humidity,
         'timestamp': latest_reading.timestamp,
-        'debug': 'Sensor data fetched successfully'  # Add any debug info you need
+        'debug': 'Sensor data fetched successfully'
     })
 
 def about(request):

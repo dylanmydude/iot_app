@@ -1,9 +1,7 @@
-// src/ArduinoReadings.js
 import React, { useEffect, useState } from 'react';
 
-const ArduinoReadings = () => {
+const ArduinoReadings = ({ onUpdateTemperature }) => {
     const [reading, setReading] = useState({ temperature: null, humidity: null, timestamp: null });
-    const [debug, setDebug] = useState('Loading...');
 
     useEffect(() => {
         const fetchReading = () => {
@@ -15,26 +13,20 @@ const ArduinoReadings = () => {
                         humidity: data.humidity,
                         timestamp: data.timestamp,
                     });
-                    setDebug(data.debug || 'No debug info available');
+                    if (onUpdateTemperature) {
+                        onUpdateTemperature(data.temperature);
+                    }
                 })
-                .catch(error => console.error('Error:', error));
+                .catch(error => console.error('Error fetching data:', error));
         };
 
-        fetchReading(); // Fetch reading immediately on component mount
-        const intervalId = setInterval(fetchReading, 10000); // Fetch reading every 10 seconds
+        fetchReading(); // Fetch immediately on component mount
+        const intervalId = setInterval(fetchReading, 10000); // Refresh every 10 seconds
 
-        return () => clearInterval(intervalId); // Clean up the interval on component unmount
-    }, []);
+        return () => clearInterval(intervalId); // Cleanup
+    }, [onUpdateTemperature]);
 
-    return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold text-indigo-400">Set the layout here in figma: </h1>
-            <p id="reading" className="text-lg text-gray-300">
-                Temperature: {reading.temperature}°C, Humidity: {reading.humidity}%, Timestamp: {reading.timestamp}
-            </p>
-            <p id="debug" className="text-lg text-gray-300">{debug}</p>
-        </div>
-    );
+    return null; // This component now only handles data fetching
 };
 
 export default ArduinoReadings;

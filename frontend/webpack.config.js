@@ -5,8 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'), // output to dist directory
     filename: 'bundle.js',
+    publicPath: '/static/', // ensures bundle.js is referenced as /static/bundle.js in index.html
   },
   module: {
     rules: [
@@ -28,8 +29,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
-      filename: 'index.html',
+      template: './public/index.html', // your custom index.html template
+      filename: 'index.html', // will be output into dist/
     }),
   ],
   devServer: {
