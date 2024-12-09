@@ -5,36 +5,49 @@ const DashboardLayout = () => {
     const [temperature, setTemperature] = useState(null);
 
     return (
-        <div className="grid grid-cols-5 grid-rows-6 gap-4 p-0">
-            {/* Include ArduinoReadings to fetch temperature */}
+        <div className="grid grid-cols-5 grid-rows-6 gap-4 h-full w-full">
+            {/* Include ArduinoReadings */}
             <ArduinoReadings onUpdateTemperature={setTemperature} />
 
-            {/* Left Section: Display temperature in the "temp" card */}
-            <div className="col-span-3 row-span-3 grid grid-rows-3 grid-cols-3 gap-4">
-                <div className="bg-white rounded-lg shadow aspect-w-2 aspect-h-1 p-2">
-                    <div className="p-2 text-xl font-semibold">
+            {/* Left Section: 4 small cards + graph */}
+            <div className="col-span-3 row-span-3 grid grid-cols-4 grid-rows-3 gap-4">
+                <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg aspect-square flex items-center justify-center">
+                    <div className="p-2 text-xl font-semibold text-white">
                         {temperature !== null ? `${temperature}°C` : 'Loading...'}
                     </div>
                 </div>
-                <div className="bg-white rounded-lg shadow aspect-w-2 aspect-h-1 p-2">
-                    <div className="p-2">RH</div>
+                <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg aspect-square flex items-center justify-center">
+                    <div className="p-2 text-xl font-semibold text-white">RH</div>
                 </div>
-                <div className="bg-white rounded-lg shadow aspect-w-2 aspect-h-1 p-2">
-                    <div className="p-2">Extra</div>
+                <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg aspect-square flex items-center justify-center">
+                    <div className="p-2 text-xl font-semibold text-white">Extra</div>
                 </div>
-                <div className="col-span-3 row-span-2 bg-white rounded-lg shadow p-2">
-                    <div className="p-2">Graph</div>
+                <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg aspect-square flex items-center justify-center">
+                    <div className="p-2 text-xl font-semibold text-white">New Card</div>
+                </div>
+                <div className="backdrop-blur-xl bg-white/10 border border-gray-800/20 shadow-md rounded-lg col-span-4 row-span-2 p-2 flex items-center justify-center">
+                    <div className="p-2 text-xl font-semibold text-white">Graph</div>
                 </div>
             </div>
 
             {/* Notifications Card */}
-            <div className="col-span-2 row-span-3 bg-white rounded-lg shadow p-2">
-                <div className="h-full p-2">Notifications</div>
+            <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg col-span-2 row-span-3 p-2 flex items-center justify-center">
+                <div className="text-xl font-semibold text-white">Notifications</div>
             </div>
 
             {/* Timeline Card */}
-            <div className="col-span-5 row-span-1 bg-white rounded-lg shadow p-2">
-                <div className="p-2">Timeline</div>
+            <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg col-span-5 row-span-1 p-2 flex items-center justify-center">
+                <div className="text-xl font-semibold text-white">Timeline</div>
+            </div>
+
+            {/* Weather API Card */}
+            <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg col-span-3 row-span-2 p-2 flex items-center justify-center">
+                <div className="text-xl font-semibold text-white">Weather API</div>
+            </div>
+
+            {/* Vision AI Card */}
+            <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg col-span-2 row-span-2 p-2 flex items-center justify-center">
+                <div className="text-xl font-semibold text-white">Vision AI</div>
             </div>
         </div>
     );

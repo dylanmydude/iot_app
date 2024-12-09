@@ -5,9 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'), // output to dist directory
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/static/', // ensures bundle.js is referenced as /static/bundle.js in index.html
+    publicPath: '/static/',
   },
   module: {
     rules: [
@@ -29,8 +29,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html', // your custom index.html template
-      filename: 'index.html', // will be output into dist/
+      template: './public/index.html',
+      filename: 'index.html',
     }),
   ],
   devServer: {
@@ -39,5 +39,14 @@ module.exports = {
     },
     compress: true,
     port: 9000,
+    // Corrected proxy configuration
+    proxy: [
+      {
+        context: ['/reading'],
+        target: 'http://127.0.0.1:8000', // Django server
+        secure: false,
+        changeOrigin: true,
+      },
+    ],
   },
 };
