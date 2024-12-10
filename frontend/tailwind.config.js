@@ -1,13 +1,14 @@
-// tailwind.config.js
 module.exports = {
   content: [
     './src/**/*.{html,js}',
     '../iot_app/templates/**/*.{html,js}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Jost', 'sans-serif'], 
+      },
+    },
   },
-  plugins: [
-    require('@tailwindcss/aspect-ratio'),
-  ],
+  plugins: [],
 };
