@@ -15,46 +15,46 @@ const DashboardLayout = () => {
 
             {/* Left Section: 4 small cards + graph */}
             <div className="col-span-3 row-span-3 grid grid-cols-4 grid-rows-3 gap-4">
-                <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg flex items-center justify-center">
-                    <div className="p-2 text-xl font-semibold text-white">
+                <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg flex items-center justify-center">
+                    <div className="p-2 text-2xl text-white">
                         {temperature !== null ? `${temperature}°C` : 'Loading...'}
                     </div>
                 </div>
-                <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg flex items-center justify-center">
-                    <div className="p-2 text-xl font-semibold text-white">
+                <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg flex items-center justify-center">
+                    <div className="p-2 text-2xl text-white">
                         {humidity !== null ? `${humidity}% RH` : 'Loading...'}
                     </div>
                 </div>
 
-                <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg flex items-center justify-center">
-                    <div className="p-2 text-xl font-semibold text-white">Extra</div>
+                <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg flex items-center justify-center">
+                    <div className="p-2 text-2xl text-white">Extra</div>
                 </div>
-                <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg flex items-center justify-center">
-                    <div className="p-2 text-xl font-semibold text-white">New Card</div>
+                <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg flex items-center justify-center">
+                    <div className="p-2 text-2xl text-white">New Card</div>
                 </div>
-                <div className="backdrop-blur-xl bg-white/10 border border-gray-800/20 shadow-md rounded-lg col-span-4 row-span-2 p-2 flex items-center justify-center">
-                    <div className="p-2 text-xl font-semibold text-white">Graph</div>
+                <div className="backdrop-blur-xl bg-black/20 border border-gray-800/20 shadow-md rounded-lg col-span-4 row-span-2 p-2 flex items-center justify-center">
+                    <div className="p-2 text-2xl text-white">Graph</div>
                 </div>
             </div>
 
             {/* Notifications Card */}
-            <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg col-span-2 row-span-3 p-2 flex items-center justify-center">
-                <div className="text-xl font-semibold text-white">Notifications</div>
+            <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg col-span-2 row-span-3 p-2 flex items-center justify-center">
+                <div className="text-2xl text-white">Notifications</div>
             </div>
 
             {/* Timeline Card */}
-            <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg col-span-5 row-span-1 p-2 flex items-center justify-center">
-                <div className="text-xl font-semibold text-white">Timeline</div>
+            <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg col-span-5 row-span-1 p-2 flex items-center justify-center">
+                <div className="text-2xl text-white">Timeline</div>
             </div>
 
             {/* Weather API Card */}
-            <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg col-span-3 row-span-2 p-2 flex items-center justify-center">
-                <div className="text-xl font-semibold text-white">Weather API</div>
+            <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg col-span-3 row-span-2 p-2 flex items-center justify-center">
+                <div className="text-2xl text-white">Weather API</div>
             </div>
 
             {/* Vision AI Card */}
-            <div className="backdrop-blur-md bg-white/10 border border-gray-800/20 shadow-md rounded-lg col-span-2 row-span-2 p-2 flex items-center justify-center">
-                <div className="text-xl font-semibold text-white">Vision AI</div>
+            <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg col-span-2 row-span-2 p-2 flex items-center justify-center">
+                <div className="text-2xl text-white">Vision AI</div>
             </div>
         </div>
     );
