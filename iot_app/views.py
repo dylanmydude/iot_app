@@ -1,6 +1,7 @@
 import os
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+from django.utils.dateparse import parse_datetime
 from .models import SensorReading
 
 def index(request):
@@ -23,3 +24,26 @@ def reading(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def get_readings_history(request):
+    """Fetch historical readings with optional filtering."""
+    limit = int(request.GET.get('limit', 100))  # Default to 100 records
+    start_time = request.GET.get('start_time')  # Optional start time
+    end_time = request.GET.get('end_time')  # Optional end time
+
+    query = SensorReading.objects.all()
+
+    if start_time:
+        query = query.filter(timestamp__gte=parse_datetime(start_time))
+    if end_time:
+        query = query.filter(timestamp__lte=parse_datetime(end_time))
+
+    readings = query.order_by('-timestamp')[:limit]
+
+    data = {
+        "temperature": [reading.temperature for reading in readings],
+        "humidity": [reading.humidity for reading in readings],
+        "timestamps": [reading.timestamp.isoformat() for reading in readings],
+    }
+
+    return JsonResponse(data)
