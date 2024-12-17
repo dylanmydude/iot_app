@@ -3,6 +3,9 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.utils.dateparse import parse_datetime
 from .models import SensorReading
+from datetime import timedelta
+from django.utils import timezone
+
 
 def index(request):
     """Serve the React app."""
@@ -26,19 +29,26 @@ def about(request):
     return render(request, 'about.html')
 
 def get_readings_history(request):
-    """Fetch historical readings with optional filtering."""
-    limit = int(request.GET.get('limit', 100))  # Default to 100 records
-    start_time = request.GET.get('start_time')  # Optional start time
-    end_time = request.GET.get('end_time')  # Optional end time
+    """Fetch historical readings with time range filtering."""
+    print("Request Received:", request)
+    time_range = request.GET.get('time_range', '24hrs')
+    limit = int(request.GET.get('limit', 100)) 
 
-    query = SensorReading.objects.all()
+    now = timezone.now()
+    if time_range == '1hr':
+        start_time = now - timedelta(hours=1)
+    elif time_range == '8hrs':
+        start_time = now - timedelta(hours=8)
+    elif time_range == '24hrs':
+        start_time = now - timedelta(hours=24)
+    elif time_range == '7d':
+        start_time = now - timedelta(days=7)
+    elif time_range == '1m':
+        start_time = now - timedelta(days=30)
+    else:
+        start_time = now - timedelta(hours=24)
 
-    if start_time:
-        query = query.filter(timestamp__gte=parse_datetime(start_time))
-    if end_time:
-        query = query.filter(timestamp__lte=parse_datetime(end_time))
-
-    readings = query.order_by('-timestamp')[:limit]
+    readings = SensorReading.objects.filter(timestamp__gte=start_time).order_by('-timestamp')[:limit]
 
     data = {
         "temperature": [reading.temperature for reading in readings],
@@ -46,4 +56,5 @@ def get_readings_history(request):
         "timestamps": [reading.timestamp.isoformat() for reading in readings],
     }
 
+    print("Returning Data:", data)
     return JsonResponse(data)

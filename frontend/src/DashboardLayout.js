@@ -6,33 +6,35 @@ const DashboardLayout = () => {
     const [temperature, setTemperature] = useState(null);
     const [humidity, setHumidity] = useState(null);
 
-    // Historical data from the backend
+    // Historical data
     const [temperatureHistory, setTemperatureHistory] = useState([]);
     const [humidityHistory, setHumidityHistory] = useState([]);
     const [timeStamps, setTimeStamps] = useState([]);
 
-    // Fetch historical data from the backend on component mount
+    const fetchHistory = async (timeRange = '24hrs') => {
+        try {
+            const response = await fetch(`/api/readings/history/?time_range=${timeRange}`);
+            const data = await response.json();
+
+            setTemperatureHistory([...data.temperature].reverse());
+            setHumidityHistory([...data.humidity].reverse());
+            setTimeStamps([...data.timestamps].reverse());
+
+            console.log(`Fetched data for: ${timeRange}`, data);
+        } catch (error) {
+            console.error('Error fetching historical data:', error);
+        }
+    };
+
+    // Initial data fetch
     useEffect(() => {
-        const fetchHistory = async () => {
-            try {
-                const response = await fetch('/api/readings/history/');
-                const data = await response.json();
-
-                setTemperatureHistory(data.temperature.reverse());
-                setHumidityHistory(data.humidity.reverse());
-                setTimeStamps(data.timestamps.reverse());
-            } catch (error) {
-                console.error('Error fetching historical data:', error);
-            }
-        };
-
         fetchHistory();
     }, []);
 
-    // Update live data with the most recent temperature and humidity values
+    // live updates
     useEffect(() => {
         if (temperature !== null && humidity !== null) {
-            setTemperatureHistory(prev => [...prev, temperature].slice(-100)); // Keep only the last 100 points
+            setTemperatureHistory(prev => [...prev, temperature].slice(-100));
             setHumidityHistory(prev => [...prev, humidity].slice(-100));
             setTimeStamps(prev => [...prev, new Date().toLocaleTimeString()].slice(-100));
         }
@@ -65,38 +67,108 @@ const DashboardLayout = () => {
                 <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg flex items-center justify-center">
                     <div className="p-2 text-2xl text-white">New Card</div>
                 </div>
-                <div className="backdrop-blur-xl bg-black/20 border border-gray-800/20 shadow-md rounded-lg col-span-4 row-span-2 p-2 flex items-center justify-center">
+               
+                <div className="backdrop-blur-xl bg-black/20 border border-gray-800/20 shadow-md rounded-lg col-span-4 row-span-2 p-2 flex flex-col">
+                    {/* Buttons and Legend Row */}
+                    <div className="flex justify-between items-center mb-2">
+                        {/* Legend and Buttons in Flex */}
+                        <div className="flex items-center space-x-8">
+                            {/* Plotly Legend Title */}
+                            <div className="flex items-center space-x-4">
+                                {/* <span className="text-white text-sm">Legend:</span> */}
+                                <div className="flex space-x-2">
+                                    <div className="flex items-center">
+                                        <div className="w-4 h-1 bg-red-600 mr-1"></div>
+                                        <span className="text-white text-xs">Temp</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <div className="w-4 h-1 bg-blue-600 mr-1"></div>
+                                        <span className="text-white text-xs">RH</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Time Range Buttons */}
+                        <div className="flex items-center space-x-2">
+                            <button
+                                onClick={() => fetchHistory('1hr')}
+                                className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs">
+                                1 Hour
+                            </button>
+                            <button
+                                onClick={() => fetchHistory('8hrs')}
+                                className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs">
+                                8 Hours
+                            </button>
+                            <button
+                                onClick={() => fetchHistory('24hrs')}
+                                className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs">
+                                1 Day
+                            </button>
+                            <button
+                                onClick={() => fetchHistory('7d')}
+                                className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs">
+                                1 Week
+                            </button>
+                            <button
+                                onClick={() => fetchHistory('1m')}
+                                className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs">
+                                1 Month
+                            </button>
+                        </div>
+
+                    </div>
+
+                    {/* Graph */}
                     <div className="w-full h-full">
                         <Plot
                             data={[
                                 {
-                                    x: timeStamps.slice(-100),
-                                    y: temperatureHistory.slice(-100),
-                                    name: 'Temperature',
+                                    x: timeStamps.slice(-50),
+                                    y: temperatureHistory.slice(-50),
+                                    name: 'Temp',
                                     type: 'scatter',
-                                    mode: 'lines+markers',
-                                    marker: { color: 'red' },
+                                    mode: 'lines',
+                                    line: { color: 'rgba(255, 0, 0, 0.8)', width: 2 },
                                 },
                                 {
-                                    x: timeStamps.slice(-100),
-                                    y: humidityHistory.slice(-100),
-                                    name: 'Humidity',
+                                    x: timeStamps.slice(-50),
+                                    y: humidityHistory.slice(-50),
+                                    name: 'RH',
                                     type: 'scatter',
-                                    mode: 'lines+markers',
-                                    marker: { color: 'blue' },
+                                    mode: 'lines',
+                                    line: { color: 'rgba(0, 0, 255, 0.8)', width: 2 },
                                 },
                             ]}
                             layout={{
                                 autosize: true,
-                                title: 'Temperature & Humidity Over Time',
                                 paper_bgcolor: 'transparent',
                                 plot_bgcolor: 'transparent',
-                                font: { color: 'white' },
-                                margin: { l: 30, r: 30, t: 30, b: 30 },
-                                xaxis: { title: 'Time' },
-                                yaxis: { title: 'Value' },
+                                font: { color: 'rgba(225, 225, 225, 0.8)' },
+                                margin: { l: 20, r: 20, t: 20, b: 20 },
+                                showlegend: false, 
+                                xaxis: {
+                                    showgrid: true,
+                                    gridcolor: 'rgba(200, 200, 200, 0.4)',
+                                    gridwidth: 1,
+                                    griddash: 'dot',
+                                    showticklabels: true,
+                                    tickformat: '%H:%M',
+                                    // tickangle: 45,
+                                },
+                                yaxis: {
+                                    showgrid: true,
+                                    gridcolor: 'rgba(200, 200, 200, 0.4)',
+                                    gridwidth: 1,
+                                    griddash: 'dot',
+                                    showticklabels: true,
+                                },
                             }}
-                            config={{ responsive: true }}
+                            config={{
+                                responsive: true,
+                                displayModeBar: false,
+                            }}
                             style={{ width: '100%', height: '100%' }}
                         />
                     </div>

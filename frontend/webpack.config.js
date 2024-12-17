@@ -39,14 +39,14 @@ module.exports = {
     },
     compress: true,
     port: 9000,
-    // Corrected proxy configuration
     proxy: [
       {
-        context: ['/reading'],
-        target: 'http://127.0.0.1:8000', // Django server
+        context: ['/api', '/reading'],
+        target: 'http://127.0.0.1:8000', 
         secure: false,
         changeOrigin: true,
       },
     ],
+    
   },
 };
