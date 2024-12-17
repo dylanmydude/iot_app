@@ -2,7 +2,7 @@
 
 - sqlite-django-react-tailwind
 
-- display temp & rh from Adruino
+- display temp & rh from Adrduino
 
 - future:
 - plotly data visualisation
