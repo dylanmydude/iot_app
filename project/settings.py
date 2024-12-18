@@ -57,6 +57,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
+AUTH_USER_MODEL = 'iot_app.User'
+
 # DB
 DATABASES = {
     'default': {
