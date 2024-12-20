@@ -10,25 +10,52 @@ const DashboardLayout = () => {
     const [temperatureHistory, setTemperatureHistory] = useState([]);
     const [humidityHistory, setHumidityHistory] = useState([]);
     const [timeStamps, setTimeStamps] = useState([]);
+    // const [timeStamps, setTimeStamps] = useState([]);
 
     const fetchHistory = async (timeRange = '24hrs') => {
         try {
             const response = await fetch(`/api/readings/history/?time_range=${timeRange}`);
-            const data = await response.json();
-
-            setTemperatureHistory([...data.temperature].reverse());
-            setHumidityHistory([...data.humidity].reverse());
-            setTimeStamps([...data.timestamps].reverse());
-
-            console.log(`Fetched data for: ${timeRange}`, data);
+            const sensors = await response.json();
+    
+            // Filter temperature and humidity data
+            const tempSensor = sensors.find(sensor => sensor.sensor_type === 'temperature');
+            const humiditySensor = sensors.find(sensor => sensor.sensor_type === 'humidity');
+    
+            setTemperatureHistory(tempSensor ? tempSensor.readings.map(r => r.value) : []);
+            setHumidityHistory(humiditySensor ? humiditySensor.readings.map(r => r.value) : []);
+            setTimeStamps(tempSensor ? tempSensor.readings.map(r => new Date(r.timestamp).toLocaleTimeString()) : []);
+    
+            console.log(`Fetched data for: ${timeRange}`, sensors);
         } catch (error) {
             console.error('Error fetching historical data:', error);
+        }
+    };
+
+     // Fetch live readings
+     const fetchLiveReadings = async () => {
+        try {
+            const response = await fetch('/api/readings/');
+            const data = await response.json();
+
+            setTemperature(data.temperature);
+            setHumidity(data.humidity);
+
+            console.log('Fetched live readings:', data);
+        } catch (error) {
+            console.error('Error fetching live readings:', error);
         }
     };
 
     // Initial data fetch
     useEffect(() => {
         fetchHistory();
+    }, []);
+
+    // Fetch live readings every 10 seconds
+    useEffect(() => {
+        fetchLiveReadings(); // Fetch initial readings
+        const interval = setInterval(fetchLiveReadings, 10000); // Poll every 10 seconds
+        return () => clearInterval(interval); // Cleanup on unmount
     }, []);
 
     // live updates

@@ -2,7 +2,7 @@ import os
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.utils.dateparse import parse_datetime
-from .models import SensorReading
+from iot_app.models import SensorReading, DeviceSensor
 from datetime import timedelta
 from django.utils import timezone
 
@@ -17,44 +17,38 @@ def index(request):
         return HttpResponse("React build files not found. Did you run 'npm run build'?", status=404)
 
 def reading(request):
-    latest_reading = SensorReading.objects.latest('timestamp')
-    return JsonResponse({
-        'temperature': latest_reading.temperature,
-        'humidity': latest_reading.humidity,
-        'timestamp': latest_reading.timestamp,
-        'debug': 'Sensor data fetched successfully'
-    })
+    try:
+        temperature_sensor = DeviceSensor.objects.filter(sensor_type='temperature').first()
+        humidity_sensor = DeviceSensor.objects.filter(sensor_type='humidity').first()
+
+        latest_temperature = SensorReading.objects.filter(sensor=temperature_sensor).latest('timestamp') if temperature_sensor else None
+        latest_humidity = SensorReading.objects.filter(sensor=humidity_sensor).latest('timestamp') if humidity_sensor else None
+
+        return JsonResponse({
+            'temperature': latest_temperature.value if latest_temperature else None,
+            'humidity': latest_humidity.value if latest_humidity else None,
+            'timestamp': latest_temperature.timestamp if latest_temperature else None,
+            'debug': 'Sensor data fetched successfully'
+        })
+    except SensorReading.DoesNotExist:
+        return JsonResponse({'error': 'No readings found'}, status=404)
+
 
 def about(request):
     return render(request, 'about.html')
 
 def get_readings_history(request):
-    """Fetch historical readings with time range filtering."""
-    print("Request Received:", request)
-    time_range = request.GET.get('time_range', '24hrs')
-    limit = int(request.GET.get('limit', 100)) 
+    time_range = request.GET.get('time_range', '24hrs')  # Parse time range
+    sensors = DeviceSensor.objects.all()
+    data = []
 
-    now = timezone.now()
-    if time_range == '1hr':
-        start_time = now - timedelta(hours=1)
-    elif time_range == '8hrs':
-        start_time = now - timedelta(hours=8)
-    elif time_range == '24hrs':
-        start_time = now - timedelta(hours=24)
-    elif time_range == '7d':
-        start_time = now - timedelta(days=7)
-    elif time_range == '1m':
-        start_time = now - timedelta(days=30)
-    else:
-        start_time = now - timedelta(hours=24)
+    for sensor in sensors:
+        readings = SensorReading.objects.filter(sensor=sensor).order_by('-timestamp')[:50]
+        data.append({
+            "sensor_id": sensor.id,
+            "sensor_type": sensor.sensor_type,
+            "unit": sensor.unit,
+            "readings": [{"value": r.value, "timestamp": r.timestamp} for r in readings]
+        })
 
-    readings = SensorReading.objects.filter(timestamp__gte=start_time).order_by('-timestamp')[:limit]
-
-    data = {
-        "temperature": [reading.temperature for reading in readings],
-        "humidity": [reading.humidity for reading in readings],
-        "timestamps": [reading.timestamp.isoformat() for reading in readings],
-    }
-
-    print("Returning Data:", data)
-    return JsonResponse(data)
+    return JsonResponse(data, safe=False)
