@@ -5,6 +5,7 @@ from django.utils.dateparse import parse_datetime
 from iot_app.models import SensorReading, DeviceSensor
 from datetime import timedelta
 from django.utils import timezone
+from iot_app.services.weather_service import get_weather_by_city
 
 
 def index(request):
@@ -52,3 +53,19 @@ def get_readings_history(request):
         })
 
     return JsonResponse(data, safe=False)
+
+def weather_view(request):
+    city = request.GET.get('city', 'Johannesburg') 
+    api_key = '65e3beb7f063c593f145cda18df6dfca'
+    weather_data = get_weather_by_city(city, api_key)
+
+    if "error" in weather_data:
+        return JsonResponse({"error": weather_data["error"]}, status=400)
+    else:
+        return JsonResponse({
+            "city": city,
+            "temperature": weather_data["main"]["temp"],
+            "description": weather_data["weather"][0]["description"],
+            "humidity": weather_data["main"]["humidity"],
+            "wind_speed": weather_data["wind"]["speed"],
+        })

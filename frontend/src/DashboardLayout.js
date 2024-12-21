@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Plot from 'react-plotly.js';
 import ArduinoReadings from './ArduinoReadings';
+import WeatherCard from "./WeatherCard";
+
 
 const DashboardLayout = () => {
     const [temperature, setTemperature] = useState(null);
@@ -213,9 +215,7 @@ const DashboardLayout = () => {
             </div>
 
             {/* Weather API Card */}
-            <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg col-span-3 row-span-2 p-2 flex items-center justify-center">
-                <div className="text-2xl text-white">Weather API</div>
-            </div>
+            <WeatherCard />
 
             {/* Vision AI Card */}
             <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg col-span-2 row-span-2 p-2 flex items-center justify-center">
