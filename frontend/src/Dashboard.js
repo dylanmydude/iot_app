@@ -11,28 +11,22 @@ const Dashboard = () => {
         <h2 className="text-6xl mb-9 text-white pl-4">Special</h2>
         <ul className="space-y-4 pl-4 text-xl"> {/* Adds vertical spacing and left padding */}
           <li>
-            <a href="#" className="text-white">Dashboard</a>
+            <a href="#" className="text-white">Home</a>
           </li>
           <li>
-            <a href="#" className="text-white">Graphs</a>
+            <a href="#" className="text-white">Timelines</a>
           </li>
           <li>
-            <a href="#" className="text-white">Vision AI</a>
+            <a href="#" className="text-white">Devices</a>
           </li>
           <li>
-            <a href="#" className="text-white">LLMs</a>
+            <a href="#" className="text-white">Notifications</a>
           </li>
           <li>
-            <a href="#" className="text-white">Profile</a>
+            <a href="#" className="text-white"></a>
           </li>
           <li>
-            <a href="#" className="text-white">Settings</a>
-          </li>
-          <li>
-            <a href="#" className="text-white">Documentation</a>
-          </li>
-          <li>
-            <a href="#" className="text-white">Logout</a>
+            <a href="#" className="text-white"></a>
           </li>
         </ul>
       </div>
