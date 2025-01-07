@@ -1,5 +1,6 @@
 // src/Dashboard.js
 import React from 'react';
+import { Link } from "react-router-dom";
 import DashboardLayout from './DashboardLayout';
 import TopBar from './TopBar';
 
@@ -9,7 +10,7 @@ const Dashboard = () => {
       {/* Sidebar */}
       <div className="w-1/6 flex flex-col p-4 pt-10 backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md">
         <h2 className="text-6xl mb-9 text-white pl-4">Special</h2>
-        <ul className="space-y-4 pl-4 text-xl"> {/* Adds vertical spacing and left padding */}
+        <ul className="space-y-4 pl-4 text-xl">
           <li>
             <a href="#" className="text-white">Home</a>
           </li>
