@@ -1,6 +1,7 @@
 // src/LoginPage.js
 import React, { useState } from "react";
 
+// TODO create super user
 const LoginPage = ({ history }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
