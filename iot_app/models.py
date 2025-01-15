@@ -9,7 +9,12 @@ class Account(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 class User(AbstractUser):
-    account = models.ForeignKey('Account', on_delete=models.CASCADE)
+    account = models.ForeignKey(
+        'Account',
+        on_delete=models.CASCADE,
+        null=True,  # Allow null values
+        blank=True  # Allow blank values in forms
+    )
     role = models.CharField(max_length=50, choices=[
         ('admin', 'Admin'),
         ('user', 'User'),

@@ -1,12 +1,33 @@
 import os
+import json
 from django.http import HttpResponse, JsonResponse
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render
 from django.utils.dateparse import parse_datetime
 from iot_app.models import SensorReading, DeviceSensor
 from datetime import timedelta
 from django.utils import timezone
 from iot_app.services.weather_service import get_weather_by_city
+from django.views.decorators.csrf import csrf_exempt
 
+
+@csrf_exempt  # Disable CSRF for testing; enable in production with proper CSRF tokens
+def login_view(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            username = data.get('username')
+            password = data.get('password')
+
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return JsonResponse({'message': 'Login successful', 'token': 'dummy-token'})  # Replace 'dummy-token'
+            else:
+                return JsonResponse({'error': 'Invalid username or password'}, status=401)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 def index(request):
     """Serve the React app."""
