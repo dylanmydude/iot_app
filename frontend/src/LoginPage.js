@@ -1,8 +1,9 @@
 // src/LoginPage.js
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 
-// TODO create super user
-const LoginPage = ({ history }) => {
+const LoginPage = () => {
+  const navigate = useNavigate();   
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -20,8 +21,8 @@ const LoginPage = ({ history }) => {
 
       const data = await response.json();
       if (response.ok) {
-        localStorage.setItem("authToken", data.token); // Save token
-        history.push("/"); // Redirect to dashboard
+        localStorage.setItem("authToken", data.token); 
+        navigate("/"); 
       } else {
         setError(data.error || "Invalid credentials");
       }

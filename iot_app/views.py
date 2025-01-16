@@ -1,7 +1,7 @@
 import os
 import json
 from django.http import HttpResponse, JsonResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.utils.dateparse import parse_datetime
 from iot_app.models import SensorReading, DeviceSensor
@@ -27,6 +27,13 @@ def login_view(request):
                 return JsonResponse({'error': 'Invalid username or password'}, status=401)
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+@csrf_exempt
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        return JsonResponse({'message': 'Logout successful'})
     return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 def index(request):
