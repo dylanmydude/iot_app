@@ -37,7 +37,7 @@ const WeatherCard = () => {
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     placeholder="Enter city name"
-                    className="p-2 rounded-md w-full bg-gray-800 text-white"
+                    className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg w-full p-2"
                 />
             </div>
             {loading ? (
