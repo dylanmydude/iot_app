@@ -91,10 +91,10 @@ const DashboardLayout = () => {
                 </div>
 
                 <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg flex items-center justify-center">
-                    <div className="p-2 text-2xl text-white">Extra</div>
+                    <div className="p-2 text-2xl text-white">450 lx</div>
                 </div>
                 <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg flex items-center justify-center">
-                    <div className="p-2 text-2xl text-white">New Card</div>
+                    <div className="p-2 text-2xl text-white">+</div>
                 </div>
                
                 <div className="backdrop-blur-xl bg-black/20 border border-gray-800/20 shadow-md rounded-lg col-span-4 row-span-2 p-2 flex flex-col">
