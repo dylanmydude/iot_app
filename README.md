@@ -1,12 +1,10 @@
 # IoT app
 
-- sqlite-django-react-tailwind
+- django-react-tailwind-postgresql
 
-- display temp & rh from Adrduino
+- display sensor readings from smart devices
 
 - future:
-- plotly data visualisation
 - rules/ actions
-- weather api
 - vision ai
 - machine learning
