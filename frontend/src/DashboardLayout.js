@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Plot from 'react-plotly.js';
 import ArduinoReadings from './ArduinoReadings';
 import WeatherCard from "./WeatherCard";
-
+import Timeline from './Timeline';
 
 const DashboardLayout = () => {
     const [temperature, setTemperature] = useState(null);
@@ -210,8 +210,28 @@ const DashboardLayout = () => {
             </div>
 
             {/* Timeline Card */}
-            <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg col-span-5 row-span-1 p-2 flex items-center justify-center">
-                <div className="text-2xl text-white">Timeline</div>
+            <div className="backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md rounded-lg col-span-5 row-span-1 p-2">
+                <div className="relative w-full h-16">
+                    {/* Horizontal Line */}
+                    <div className="absolute top-1/2 left-0 right-0 h-1 bg-white/50 -translate-y-1/2"></div>
+
+                    {/* Event Dots */}
+                    {[
+                        { position: 10, annotation: 'Planted seeds' },
+                        { position: 50, annotation: 'Watered plants' },
+                        { position: 80, annotation: 'Fertilisation applied' },
+                    ].map((event, index) => (
+                        <div
+                            key={index}
+                            className="absolute w-4 h-4 bg-white rounded-full transform -translate-x-1/2 -translate-y-1/2 hover:scale-150 transition-transform duration-200"
+                            style={{
+                                left: `${event.position}%`,
+                                top: '50%',
+                            }}
+                            title={event.annotation}
+                        ></div>
+                    ))}
+                </div>
             </div>
 
             {/* Weather API Card */}
