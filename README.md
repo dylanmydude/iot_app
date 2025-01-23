@@ -1,4 +1,4 @@
-# IoT app
+# IoT agri app
 
 - django-react-tailwind-postgresql
 
@@ -7,4 +7,4 @@
 - future:
 - rules/ actions
 - vision ai
-- machine learning
+- LLM
