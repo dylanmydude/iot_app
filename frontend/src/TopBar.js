@@ -28,7 +28,7 @@ const TopBar = () => {
   return (
     <div className="h-12 backdrop-blur-md bg-black/20 border border-gray-800/20 shadow-md flex items-center justify-between px-4">
       {/* Left: Breadcrumbs */}
-      <div className="text-sm text-gray-400">Home / Dashboard</div>
+      <div className="text-sm text-gray-400">Home</div>
 
       {/* Right: Search, Logout, Settings */}
       <div className="flex items-center space-x-4">
