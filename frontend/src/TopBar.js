@@ -46,7 +46,6 @@ const TopBar = () => {
           onClick={handleLogout}
         >
           <PeopleIcon className="mr-1" />
-          Logout
         </button>
 
         <button className="text-gray-400 hover:text-gray-300">
